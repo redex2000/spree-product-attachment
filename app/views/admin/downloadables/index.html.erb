@@ -24,12 +24,7 @@
 		  <% end %>
 
 		  <%= f.field_container :viewable_id do %>
-  		  <% if @product.has_variants? %>
-          <%= f.label Variant.name + ": " %>
-          <%= f.select :viewable_id, @variants %>
-        <% else %>
-          <%= hidden_field_tag :product_id, @product.id %>
-        <% end %>
+        <%= hidden_field_tag :product_id, @product.id %>
       <% end %>
 
 
@@ -54,9 +49,6 @@
 
 <table class="index">
 	<tr>
-	  <% if @product.has_variants? %>
-	    <th><%= Variant.name %></th>
-	  <% end %>
 		<th><%= t(:filename) %></th>
 		<th><%= t(:description) %></th>
 		<th width="40px"><%= t(:enabled) %></th>
@@ -64,9 +56,6 @@
 	</tr>
   <% @product.downloadables.each do |downloadable| %>
     <tr>
-      <% if @product.has_variants? %>
-        <td><%= t('all') %></td>
-      <% end %>
       <td><%= link_to(downloadable.filename, downloadable.attachment.url(:product)) %></td>
       <td><%= h(downloadable.description) %></td>
       <td><%= check_box_tag 'downloadable', 'enabled', downloadable.enabled, :disabled => true %></td>
@@ -76,46 +65,6 @@
         <%= link_to_delete downloadable, {:url => admin_product_downloadable_url(@product, downloadable) }%>
       </td>
     </tr>
-  <% end %>
-
-	<% @product.variants.each do |variant| %>
-	  <tr>
-	    <% if @product.has_variants? %>
-        <td><%= variant.options_text %></td>
-      <% end %>
-	    <td>
-	      <table>
-	      <% variant.downloadables.each do |downloadable| %>
-	        <tr><td><%= link_to(downloadable.filename, downloadable.attachment.url(:product)) %></td></tr>
-	      <% end %>
-	      </table>
-	    </td>
-	    <td>
-	      <table>
-	      <% variant.downloadables.each do |downloadable| %>
-	        <tr><td><%= (downloadable.description == "") ? "&nbsp;" :  downloadable.description %></td></tr>
-	      <% end %>
-	      </table>
-	    </td>
-	    <td>
-	      <table>
-	      <% variant.downloadables.each do |downloadable| %>
-          <tr><td>
-	          <%= check_box_tag 'downloadable', 'enabled', downloadable.enabled, :disabled => true %>
-	        </td></tr>
-	      <% end %>
-	      </table>
-	    </td>
-      <td class="actions" style="padding:0px;">
-        <table>
-	      <% variant.downloadables.each do |downloadable| %>
-          <tr><td><%= link_to_with_icon('edit', t(:edit), edit_admin_product_downloadable_url(@product, downloadable)) %>
-          &nbsp;
-          <%= link_to_delete downloadable, {:url => admin_product_downloadable_url(@product, downloadable) }%></td></tr>
-	      <% end %>
-	      </table>
-      </td>
-	  </tr>
   <% end %>
 </table>
 

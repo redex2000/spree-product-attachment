@@ -23,17 +23,12 @@
     <%= f.check_box :enabled %>
     <%= f.label :enabled %>
 
-		  <% if @product.variants? %>
-        <%= f.label Variant.name + ": " %>
-        <%= f.select :viewable_id, @variants %>
-      <% else %>
-        <%= hidden_field_tag :product_id, @product.id %>
-      <% end %>
+    <%= hidden_field_tag :product_id, @product.id %>
 
-      <p class="form-buttons">
-        <%= button t(:update) %>
-        <%= t(:or) %> <%= link_to t(:cancel), admin_product_downloadables_path, :id => "cancel_link" %>
-      </p>
+    <p class="form-buttons">
+      <%= button t(:update) %>
+      <%= t(:or) %> <%= link_to t(:cancel), admin_product_downloadables_path, :id => "cancel_link" %>
+    </p>
 	</fieldset>
 <% end %>
 

@@ -9,7 +9,7 @@ class Admin::DownloadablesController < Admin::BaseController
   create.response do |wants|
     wants.html {redirect_to admin_product_downloadables_url(@product)}
   end
-  
+
   create.failure.wants.html do
     render :action => :index
   end
@@ -20,24 +20,16 @@ class Admin::DownloadablesController < Admin::BaseController
 
   create.before do
     if params[:downloadable].has_key? :viewable_id
-      if params[:downloadable][:viewable_id] == "All"
-        object.viewable_type = 'Product'
-        object.viewable_id = @product.id
-      else
-        object.viewable_type = 'Variant'
-        object.viewable_id = params[:downloadable][:viewable_id]
-      end
-    else
       object.viewable_type = 'Product'
       object.viewable_id = @product.id
     end
   end
 
-  destroy.before do 
+  destroy.before do
     @viewable = object.viewable
   end
 
-  destroy.response do |wants| 
+  destroy.response do |wants|
     wants.html do
       render :text => ""
     end
@@ -47,15 +39,16 @@ class Admin::DownloadablesController < Admin::BaseController
 
   def load_data
     @product = Product.find_by_permalink(params[:product_id])
-    @variants = @product.variants.collect do |variant| 
+    @variants = @product.variants.collect do |variant|
       [variant.options_text, variant.id ]
     end
 
     @variants.insert(0, "All")
-    
+
     # @download_limits = @product.variants.collect do |variant|
     #   variant.downloadables.empty? ? ("\"#{variant.id}\": \'\'") : ("\"#{variant.id}\": #{variant.downloadables.first.download_limit}")
     # end
-    
+
   end
 end
+
