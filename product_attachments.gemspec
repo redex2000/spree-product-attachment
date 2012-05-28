@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'product_attachments'
   s.version     = '1.0.0'
-  s.summary     = 'Add gem summary here'
+  s.summary     = 'Adds downloadable attachments to Spree products.'
   #s.description = 'Add (optional) gem description here'
   s.required_ruby_version = '>= 1.8.7'
 
@@ -17,6 +17,6 @@ Gem::Specification.new do |s|
 
   s.has_rdoc = true
 
-  s.add_dependency('spree_core', '>= 0.40.1')
+  s.add_dependency('spree_core', '>= 0.70.0')
 end
 
