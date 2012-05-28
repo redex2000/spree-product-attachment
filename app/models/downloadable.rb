@@ -7,6 +7,8 @@ class Downloadable < ProductDownload
 
   before_save :set_title
 
+  scope :enabled, where("product_downloads.enabled = 1")
+
   def filename
      return attachment_file_name
   end

@@ -5,7 +5,7 @@
   <strong><%= t('download_not_available').html_safe %></strong>
 <% else -%>
   <ul>
-    <% @product.downloadables.each do |downloadable| %>
+    <% @product.downloadables.enabled.each do |downloadable| %>
       <li>
 	<% extension_name = File.extname(downloadable.attachment_file_name) -%>
 	<% extension_name.slice!(0) -%>
@@ -28,3 +28,4 @@
 _______________________________________
 <br />
 <br />
+
