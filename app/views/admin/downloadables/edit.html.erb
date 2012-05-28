@@ -24,7 +24,7 @@
     <%= f.label :enabled %>
 
 		  <% if @product.variants? %>
-        <%= f.label Variant.human_name + ": " %>
+        <%= f.label Variant.name + ": " %>
         <%= f.select :viewable_id, @variants %>
       <% else %>
         <%= hidden_field_tag :product_id, @product.id %>

@@ -25,7 +25,7 @@
 
 		  <%= f.field_container :viewable_id do %>
   		  <% if @product.has_variants? %>
-          <%= f.label Variant.human_name + ": " %>
+          <%= f.label Variant.name + ": " %>
           <%= f.select :viewable_id, @variants %>
         <% else %>
           <%= hidden_field_tag :product_id, @product.id %>
@@ -55,7 +55,7 @@
 <table class="index">
 	<tr>
 	  <% if @product.has_variants? %>
-	    <th><%= Variant.human_name %></th>
+	    <th><%= Variant.name %></th>
 	  <% end %>
 		<th><%= t(:filename) %></th>
 		<th><%= t(:description) %></th>
