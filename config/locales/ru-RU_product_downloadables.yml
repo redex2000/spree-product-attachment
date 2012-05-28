@@ -1,5 +1,11 @@
 ---
-ru-RU:
+ru:
   downloadables: "Прикрепленные файлы"
-  download_not_available: К сожалению файлов для скачивания пока нет.
+  new_attachment: "Новый файл"
+  title: "Название"
+  defaults_to_filename: "По умолчанию совпадает с именем файла"
+  filename: "Имя файла"
+  downloadable:
+    enabled: "Доступен"
+  filename_hint: "Оставьте пустым, если не хотите заменять существующий файл"
 

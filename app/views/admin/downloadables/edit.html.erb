@@ -5,25 +5,23 @@
 <%= form_for(:downloadable, :url => admin_product_downloadable_url(@product), :html => { :method => :put, :multipart => true }) do |f| %>
   	<fieldset>
 		<%= f.field_container :name do %>
-			<%= f.label :name, t("filename") %> <span class="required">*</span>
-  			<sup>Leaving this blank will use the file stored in the database</sup><br/>
+			<%= f.label :name, t(:filename) %> <span class="required">*</span>
+  			<sup><%= t(:filename_hint) %></sup><br/>
 	  		<%= f.file_field :downloadable %><br/>
 	    <% end %>
 
 		<%= f.field_container :title do %>
-			<%= f.label t("title") %><span> <sup>Defaults to filename if blank</sup></span><br/>
+			<%= f.label :title, t(:title) %><span> <sup><%= t(:defaults_to_filename) %></sup></span><br/>
 			<%= f.text_field :title %>
 	  <% end %>
 
 		<%= f.field_container :description do %>
-			<%= f.label t("description") %><br/>
+			<%= f.label :description, t(:description) %><br/>
 			<%= f.text_field :description %>
 	  <% end %>
 
-		<%= f.field_container :enabled do %>
-			<%= f.label t("enabled") %><br/>
-			<%= f.check_box :enabled %>
-	  <% end %>
+    <%= f.check_box :enabled %>
+    <%= f.label :enabled %>
 
 		  <% if @product.variants? %>
         <%= f.label Variant.human_name + ": " %>
@@ -33,8 +31,8 @@
       <% end %>
 
       <p class="form-buttons">
-        <%= button t("update") %>
-        or <%= link_to t("cancel"), admin_product_downloadables_path, :id => "cancel_link" %>
+        <%= button t(:update) %>
+        <%= t(:or) %> <%= link_to t(:cancel), admin_product_downloadables_path, :id => "cancel_link" %>
       </p>
 	</fieldset>
 <% end %>

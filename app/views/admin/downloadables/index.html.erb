@@ -7,19 +7,19 @@
   <div class="yui-u first">
 	<%= form_for(:downloadable, :url => { :controller => 'downloadables', :action => 'create' }, :html => { :multipart => true }) do |f| %>
 	  	<fieldset>
-			<legend>New downloadable file</legend>
+			<legend><%= t(:new_attachment) %></legend>
 			<%= f.field_container :name do %>
-				<%= f.label :name, t("filename") %> <span class="required">*</span> <br/>
+				<%= f.label :name, t(:filename) %> <span class="required">*</span> <br/>
 				<%= f.file_field :attachment %>
 		  <% end %>
 
 			<%= f.field_container :title do %>
-				<%= f.label t("title") %><span> <sup>Defaults to filename</sup></span><br/>
+				<%= f.label t(:title) %><span> <sup><%= t(:defaults_to_filename) %></sup></span><br/>
 				<%= f.text_field :title %>
 		  <% end %>
 
 			<%= f.field_container :description do %>
-				<%= f.label t("description") %><br/>
+				<%= f.label t(:description) %><br/>
 				<%= f.text_field :description %>
 		  <% end %>
 
@@ -34,8 +34,8 @@
 
 
       <p class="form-buttons">
-        <%= button t("update") %>
-        or <%= link_to t("cancel"), "#", :id => "cancel_link" %>
+        <%= button t(:update) %>
+        or <%= link_to t(:cancel), "#", :id => "cancel_link" %>
       </p>
 		</fieldset>
 	<% end %>
@@ -49,7 +49,6 @@
         console.log(jQuery(this).val());
       });
     });
-
   </script>
 <% end %>
 
@@ -58,10 +57,10 @@
 	  <% if @product.has_variants? %>
 	    <th><%= Variant.human_name %></th>
 	  <% end %>
-		<th><%= t("filename(s)") %></th>
-		<th><%= t("description") %></th>
-		<th width="40px"><%= t("enabled") %></th>
-		<th width="120px"><%= t("action") %></th>
+		<th><%= t(:filename) %></th>
+		<th><%= t(:description) %></th>
+		<th width="40px"><%= t(:enabled) %></th>
+		<th width="120px"><%= t(:action) %></th>
 	</tr>
   <% @product.downloadables.each do |downloadable| %>
     <tr>
@@ -72,7 +71,7 @@
       <td><%= h(downloadable.description) %></td>
       <td><%= check_box_tag 'downloadable', 'enabled', downloadable.enabled, :disabled => true %></td>
       <td class="actions" style="padding:0px;">
-        <%= link_to_with_icon('edit', t("edit"), edit_admin_product_downloadable_url(@product, downloadable)) %>
+        <%= link_to_with_icon('edit', t(:edit), edit_admin_product_downloadable_url(@product, downloadable)) %>
         &nbsp;
         <%= link_to_delete downloadable, {:url => admin_product_downloadable_url(@product, downloadable) }%>
       </td>
@@ -110,7 +109,7 @@
       <td class="actions" style="padding:0px;">
         <table>
 	      <% variant.downloadables.each do |downloadable| %>
-          <tr><td><%= link_to_with_icon('edit', t("edit"), edit_admin_product_downloadable_url(@product, downloadable)) %>
+          <tr><td><%= link_to_with_icon('edit', t(:edit), edit_admin_product_downloadable_url(@product, downloadable)) %>
           &nbsp;
           <%= link_to_delete downloadable, {:url => admin_product_downloadable_url(@product, downloadable) }%></td></tr>
 	      <% end %>

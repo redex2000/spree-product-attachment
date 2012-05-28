@@ -1,4 +1,4 @@
-<% unless @product.downloadables.empty? %>
+<% unless @product.downloadables.enabled.empty? %>
   <div id="product-attachments" data-hook="product_attachments">
     <h3><%= t(:downloadables) %></h3>
     <ul id="product-attachments-list">
