@@ -1,31 +1,10 @@
-<%= image_tag 'attachment_extension/download_x37.png', :class => 'header' %><span class='tag'>Скачать:</span>
-<br /><br />
-
-<% if @product.downloadables.blank? -%>
-  <strong><%= t('download_not_available').html_safe %></strong>
-<% else -%>
-  <ul>
+<% unless @product.downloadables.empty? %>
+  <div id="product-attachments" data-hook="product_attachments">
+    <h3><%= t(:downloadables) %></h3>
+    <ul id="product-attachments-list">
     <% @product.downloadables.enabled.each do |downloadable| %>
-      <li>
-	<% extension_name = File.extname(downloadable.attachment_file_name) -%>
-	<% extension_name.slice!(0) -%>
-	<% extension_name.downcase! -%>
-	<%= link_to(image_tag("attachment_extension/icons/#{extension_name}.gif"),
-		    downloadable.attachment.url(:product),
-		    html_options = {
-		      :onClick => "javascript:pageTracker._trackEvent('#{extension_name}',
-'Download',
-'#{downloadable.attachment.url(:product)}');
- void(0);"
-		    }
-		    ) %>
-<!-- javascript: _gaq.push(['_trackPageview', '#{downloadable.attachment.url(:product)}']);"}) %> -->
-	<%= downloadable.description %>(<%= number_to_human_size(downloadable.attachment_file_size) %>)
-      </li>
-    <% end -%>
+      <li><%= attachment_link(downloadable) %></li>
+    <% end %>
   </ul>
-<% end -%>
-_______________________________________
-<br />
-<br />
+<% end %>
 
