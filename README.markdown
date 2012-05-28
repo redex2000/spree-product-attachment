@@ -1,6 +1,16 @@
-= Product Attachment
+Description
+-----------
 
-Attach files to the product.
-User can download this files freely without registration.
+Gem allows to attach files to the product.
+User can download these files without registration.
 
-Code was mostly extracted from http://github.com/chtrinh/downloadable
+Installation
+------------
+
+Add to Gemfile:
+    gem 'product_attachments', :git => 'git://github.com/secoint/spree-product-attachment.git'
+
+Run:
+    bundle install
+    rails g product_attachments:install
+
