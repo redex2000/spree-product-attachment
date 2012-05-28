@@ -101,26 +101,18 @@
 	    <td>
 	      <table>
 	      <% variant.downloadables.each do |downloadable| %>
-	        <% if downloadable.zipfile? %>
-            <tr><td>&nbsp;</td></tr>
-          <% else %>
-	          <tr><td>
-	            <%= check_box_tag 'downloadable', 'enabled', downloadable.enabled, :disabled => true %>
-	          </td></tr>
-	        <% end %>
+          <tr><td>
+	          <%= check_box_tag 'downloadable', 'enabled', downloadable.enabled, :disabled => true %>
+	        </td></tr>
 	      <% end %>
 	      </table>
 	    </td>
       <td class="actions" style="padding:0px;">
         <table>
 	      <% variant.downloadables.each do |downloadable| %>
-	        <% if downloadable.zipfile? %>
-	          <tr><td>&nbsp;</td></tr>
-	        <% else %>
-  	        <tr><td><%= link_to_with_icon('edit', t("edit"), edit_admin_product_downloadable_url(@product, downloadable)) %>
-            &nbsp;
-            <%= link_to_delete downloadable, {:url => admin_product_downloadable_url(@product, downloadable) }%></td></tr>
-          <% end %>
+          <tr><td><%= link_to_with_icon('edit', t("edit"), edit_admin_product_downloadable_url(@product, downloadable)) %>
+          &nbsp;
+          <%= link_to_delete downloadable, {:url => admin_product_downloadable_url(@product, downloadable) }%></td></tr>
 	      <% end %>
 	      </table>
       </td>
