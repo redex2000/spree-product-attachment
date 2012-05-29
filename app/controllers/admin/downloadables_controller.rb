@@ -19,10 +19,7 @@ class Admin::DownloadablesController < Admin::BaseController
   end
 
   create.before do
-    if params[:downloadable].has_key? :viewable_id
-      object.viewable_type = 'Product'
-      object.viewable_id = @product.id
-    end
+    object.viewable = @product
   end
 
   destroy.before do
