@@ -1,4 +1,4 @@
-class Admin::DownloadablesController < Admin::BaseController
+class Admin::DownloadablesController < Spree::Admin::BaseController
   resource_controller
   before_filter :load_data
 
